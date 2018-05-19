@@ -49,21 +49,6 @@ class API {
 
     }
 
-    private fun getUserToken(): Single<Boolean> {
-        return Single.create({ emitter ->
-            FirebaseAuth.getInstance().currentUser?.getIdToken(false)?.addOnCompleteListener {
-                if (it.isSuccessful) {
-                    userToken = (it.result?.token)
-                    Log.i(TAG, "Usertoken set to $userToken")
-                    emitter.onSuccess(true)
-                }
-                else {
-                    emitter.onError(Throwable("error"))
-                }
-            }
-        })
-    }
-
     fun getAllTodos() : Single<Collection<Todo>> {
 
         return Single.create({ emitter ->
@@ -76,6 +61,74 @@ class API {
                     Log.i(TAG, "Authorization is ${headers["Authorization"]}")
 
                     service.getAllTodos(headers).subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(object : SingleObserver<Collection<Todo>> {
+                                override fun onSuccess(value: Collection<Todo>?) {
+                                    emitter.onSuccess(value)
+                                }
+
+                                override fun onSubscribe(d: Disposable?) {
+
+                                }
+
+                                override fun onError(e: Throwable?) {
+                                    Log.e(TAG, e?.message.toString())
+                                    emitter.onError(e)
+                                }
+
+                            })
+
+                }
+            }
+        })
+    }
+
+    fun getTodos() : Single<Collection<Todo>> {
+
+        return Single.create({ emitter ->
+            FirebaseAuth.getInstance().currentUser?.getIdToken(true)?.addOnCompleteListener {
+                if (it.isSuccessful) {
+
+                    val headers = HashMap<String, String>()
+                    headers["Authorization"] = "Bearer ${it.result.token}"
+
+                    Log.i(TAG, "Authorization is ${headers["Authorization"]}")
+
+                    service.getTodos(headers).subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(object : SingleObserver<Collection<Todo>> {
+                                override fun onSuccess(value: Collection<Todo>?) {
+                                    emitter.onSuccess(value)
+                                }
+
+                                override fun onSubscribe(d: Disposable?) {
+
+                                }
+
+                                override fun onError(e: Throwable?) {
+                                    Log.e(TAG, e?.message.toString())
+                                    emitter.onError(e)
+                                }
+
+                            })
+
+                }
+            }
+        })
+    }
+
+    fun getDones() : Single<Collection<Todo>> {
+
+        return Single.create({ emitter ->
+            FirebaseAuth.getInstance().currentUser?.getIdToken(true)?.addOnCompleteListener {
+                if (it.isSuccessful) {
+
+                    val headers = HashMap<String, String>()
+                    headers["Authorization"] = "Bearer ${it.result.token}"
+
+                    Log.i(TAG, "Authorization is ${headers["Authorization"]}")
+
+                    service.getDones(headers).subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(object : SingleObserver<Collection<Todo>> {
                                 override fun onSuccess(value: Collection<Todo>?) {

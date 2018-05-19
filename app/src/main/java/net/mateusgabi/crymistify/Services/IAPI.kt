@@ -12,4 +12,10 @@ interface IAPI {
     @GET("all")
     fun getAllTodos(@HeaderMap headers: Map<String, String>) : Single<Collection<Todo>>
 
+    @GET("todos")
+    fun getTodos(@HeaderMap headers: Map<String, String>) : Single<Collection<Todo>>
+
+    @GET("dones")
+    fun getDones(@HeaderMap headers: Map<String, String>) : Single<Collection<Todo>>
+
 }

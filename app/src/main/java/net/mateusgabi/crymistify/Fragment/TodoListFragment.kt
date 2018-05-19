@@ -57,7 +57,7 @@ class TodoListFragment : Fragment() {
                     else -> GridLayoutManager(context, columnCount)
                 }
 
-                viewModel?.getAllTodos()
+                viewModel?.getTodos()
                         ?.subscribeOn(Schedulers.io())
                         ?.observeOn(AndroidSchedulers.mainThread())
                         ?.subscribe(object : SingleObserver<Collection<Todo>> {

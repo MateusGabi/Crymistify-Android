@@ -10,5 +10,7 @@ class TodoViewModel {
 
 
     fun getAllTodos(): Single<Collection<Todo>> = service.getAllTodos()
+    fun getTodos(): Single<Collection<Todo>> = service.getTodos()
+    fun getDones(): Single<Collection<Todo>> = service.getDones()
 
 }
