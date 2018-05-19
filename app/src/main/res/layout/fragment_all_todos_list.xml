@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="net.mateusgabi.crymistify.Fragment.DonesTodosListFragment"
+    android:name="net.mateusgabi.crymistify.Fragment.AllTodosListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".Fragment.DonesTodosListFragment"
-    tools:listitem="@layout/fragment_dones_todos_row" />
+    tools:context=".Fragment.AllTodosListFragment"
+    tools:listitem="@layout/fragment_all_todos_row" />

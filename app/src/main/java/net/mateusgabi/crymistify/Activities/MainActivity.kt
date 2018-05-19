@@ -5,7 +5,9 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import net.mateusgabi.crymistify.Fragment.AllTodosListFragment
 import net.mateusgabi.crymistify.Fragment.DonesTodosListFragment
 import net.mateusgabi.crymistify.Fragment.TodoListFragment
 import net.mateusgabi.crymistify.Model.Todo
@@ -14,7 +16,8 @@ import net.mateusgabi.crymistify.R
 class MainActivity :
         AppCompatActivity(),
         TodoListFragment.OnListFragmentInteractionListener,
-        DonesTodosListFragment.OnListFragmentInteractionListener
+        DonesTodosListFragment.OnListFragmentInteractionListener,
+        AllTodosListFragment.OnListFragmentInteractionListener
 
 {
     private val TAG: String = javaClass.canonicalName
@@ -31,6 +34,7 @@ class MainActivity :
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
+                switchFragment(AllTodosListFragment.newInstance(1))
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -55,5 +59,6 @@ class MainActivity :
 
     override fun onListFragmentInteraction(item: Todo?) {
         Log.i(TAG, "User click")
+        Toast.makeText(this, "Pode clicar a vontade", Toast.LENGTH_LONG).show()
     }
 }
