@@ -16,8 +16,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import net.mateusgabi.crymistify.R
 
-import net.mateusgabi.crymistify.Fragment.dummy.DummyContent
-import net.mateusgabi.crymistify.Fragment.dummy.DummyContent.DummyItem
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.ViewModel.TodoViewModel
 

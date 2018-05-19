@@ -9,7 +9,6 @@ import net.mateusgabi.crymistify.R
 
 
 import net.mateusgabi.crymistify.Fragment.TodoListFragment.OnListFragmentInteractionListener
-import net.mateusgabi.crymistify.Fragment.dummy.DummyContent.DummyItem
 
 import kotlinx.android.synthetic.main.fragment_todo.view.*
 import net.mateusgabi.crymistify.Model.Todo

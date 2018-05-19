@@ -11,7 +11,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import net.mateusgabi.crymistify.Fragment.TodoListFragment
-import net.mateusgabi.crymistify.Fragment.dummy.DummyContent
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.R
 import net.mateusgabi.crymistify.Services.API
