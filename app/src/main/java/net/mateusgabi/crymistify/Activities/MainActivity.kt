@@ -1,5 +1,6 @@
 package net.mateusgabi.crymistify.Activities
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -9,6 +10,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import net.mateusgabi.crymistify.Fragment.AllTodosListFragment
 import net.mateusgabi.crymistify.Fragment.DonesTodosListFragment
+import net.mateusgabi.crymistify.Fragment.ProfileViewFragment
 import net.mateusgabi.crymistify.Fragment.TodoListFragment
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.R
@@ -17,12 +19,14 @@ class MainActivity :
         AppCompatActivity(),
         TodoListFragment.OnListFragmentInteractionListener,
         DonesTodosListFragment.OnListFragmentInteractionListener,
-        AllTodosListFragment.OnListFragmentInteractionListener
+        AllTodosListFragment.OnListFragmentInteractionListener,
+        ProfileViewFragment.OnFragmentInteractionListener
 
 {
     private val TAG: String = javaClass.canonicalName
 
     private var fragment: Fragment? = null
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -37,10 +41,13 @@ class MainActivity :
                 switchFragment(AllTodosListFragment.newInstance(1))
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_profile -> {
+                switchFragment(ProfileViewFragment.newInstance())
+                return@OnNavigationItemSelectedListener true
+            }
         }
         false
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -60,5 +67,9 @@ class MainActivity :
     override fun onListFragmentInteraction(item: Todo?) {
         Log.i(TAG, "User click")
         Toast.makeText(this, "Pode clicar a vontade", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
+
     }
 }
