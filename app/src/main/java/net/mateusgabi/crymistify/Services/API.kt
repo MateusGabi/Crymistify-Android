@@ -96,9 +96,6 @@ class API {
                 }
             }
         })
-
-
-//        return service.getAllTodos(headers)
     }
 
 

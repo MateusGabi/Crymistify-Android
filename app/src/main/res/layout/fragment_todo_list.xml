@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="net.mateusgabi.crymistify.Fragments.TodoFragment"
+    android:name="net.mateusgabi.crymistify.Fragment.TodoListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".Fragments.TodoFragment"
-    tools:listitem="@layout/fragment_todo_row" />
+    tools:context=".Fragment.TodoListFragment"
+    tools:listitem="@layout/fragment_todo" />

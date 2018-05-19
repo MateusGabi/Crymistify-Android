@@ -1,3 +1,3 @@
 package net.mateusgabi.crymistify.Model
 
-class Todo(title: String, description: String, done: Boolean, created_at: String, expire_in: String)
+class Todo(var title: String, var description: String, var done: Boolean, var created_at: String, var expire_in: String)

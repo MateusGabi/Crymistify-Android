@@ -10,15 +10,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import net.mateusgabi.crymistify.Fragment.TodoListFragment
+import net.mateusgabi.crymistify.Fragment.dummy.DummyContent
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.R
 import net.mateusgabi.crymistify.Services.API
 
-class MainActivity : AppCompatActivity() {
+class MainActivity :
+        AppCompatActivity(),
+        TodoListFragment.OnListFragmentInteractionListener
 
+{
     private val TAG: String = javaClass.canonicalName
-    private var fragment: Fragment? = null
 
+    private var fragment: Fragment? = null
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -40,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        switchFragment(TodoListFragment.newInstance(1))
 
         getTodos()
     }
@@ -67,5 +74,9 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.content, fragment)
         fragmentTransaction.commit()
+    }
+
+    override fun onListFragmentInteraction(item: Todo?) {
+        Log.i(TAG, "User click")
     }
 }
