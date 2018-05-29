@@ -1,5 +1,6 @@
 package net.mateusgabi.crymistify.Activities
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -56,6 +57,10 @@ class MainActivity :
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        btn_add_todo.setOnClickListener {
+            startActivity(Intent(this, AddTodoActivity::class.java))
+        }
 
         switchFragment(Screens.TODOS)
     }
