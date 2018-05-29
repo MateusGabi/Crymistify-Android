@@ -61,6 +61,9 @@ dependencies {
     implementation 'io.github.inflationx:calligraphy3:3.0.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'
 
+    implementation 'com.yalantis:phoenix:1.2.3'
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'
