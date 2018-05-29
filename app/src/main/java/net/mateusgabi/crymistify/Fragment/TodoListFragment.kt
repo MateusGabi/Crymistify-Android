@@ -14,6 +14,8 @@ import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_todo_list.*
+import kotlinx.android.synthetic.main.fragment_todo_list.view.*
 import net.mateusgabi.crymistify.R
 
 import net.mateusgabi.crymistify.Model.Todo
@@ -47,9 +49,39 @@ class TodoListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_todo_list, container, false)
 
+
+        view.pull_to_refresh.setOnRefreshListener {
+            viewModel?.getTodos()
+                    ?.subscribeOn(Schedulers.io())
+                    ?.observeOn(AndroidSchedulers.mainThread())
+                    ?.subscribe(object : SingleObserver<Collection<Todo>> {
+                        override fun onSuccess(value: Collection<Todo>?) {
+
+                            var list = mutableListOf<Todo>()
+
+                            value!!.forEach {
+                                list.add(it)
+                            }
+
+                            view.list.adapter = TodoListViewAdapter(list, listener)
+                            view.pull_to_refresh.setRefreshing(false)
+                            Toast.makeText(activity, "These are your todos to do (obvious) \uD83E\uDD26\u200D♀️", Toast.LENGTH_LONG).show()
+                        }
+
+                        override fun onSubscribe(d: Disposable?) {
+
+                        }
+
+                        override fun onError(e: Throwable?) {
+                            Toast.makeText(context, e?.message.toString(), Toast.LENGTH_LONG).show()
+                        }
+
+                    })
+        }
+
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
+        if (view.list is RecyclerView) {
+            with(view.list) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
