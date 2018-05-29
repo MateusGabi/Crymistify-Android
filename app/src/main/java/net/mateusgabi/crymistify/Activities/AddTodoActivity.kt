@@ -7,8 +7,13 @@ import android.view.MenuItem
 import net.mateusgabi.crymistify.R
 
 import kotlinx.android.synthetic.main.activity_add_todo.*
+import kotlinx.android.synthetic.main.content_add_todo.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddTodoActivity : AppCompatActivity() {
+
+    private var todo_date: Date? = Date()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,10 +24,22 @@ class AddTodoActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        input_date.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, dayOfMonth)
+
+            todo_date = calendar.time
         }
+
+        fab.setOnClickListener {
+            createTodo()
+        }
+    }
+
+    private fun createTodo() {
+        val title = input_title.text.toString()
+        val description = input_description.text.toString()
+        val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").format(todo_date)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
