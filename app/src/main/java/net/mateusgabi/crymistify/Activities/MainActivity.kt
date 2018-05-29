@@ -1,13 +1,16 @@
 package net.mateusgabi.crymistify.Activities
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import kotlinx.android.synthetic.main.activity_main.*
 import net.mateusgabi.crymistify.Fragment.AllTodosListFragment
 import net.mateusgabi.crymistify.Fragment.DonesTodosListFragment
@@ -55,6 +58,7 @@ class MainActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
@@ -63,6 +67,10 @@ class MainActivity :
         }
 
         switchFragment(Screens.TODOS)
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
     }
 
     private fun switchFragment(screen: Screens) {

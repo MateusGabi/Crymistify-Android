@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,5 +17,22 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
+        <item name="fontPath">fonts/Nunito-Regular.ttf</item>
+    </style>
+
+    <style name="TextAppearance.FontPath.SemiBold" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Nunito-Bold.ttf</item>
+    </style>
+
+    <style name="TextViewRegularFont">
+        <item name="fontPath">fonts/Nunito-Regular.ttf</item>
+    </style>
+
+    <style name="TextViewSemiBoldFont">
+        <item name="fontPath">fonts/Nunito-SemiBold.ttf</item>
+    </style>
 
 </resources>
