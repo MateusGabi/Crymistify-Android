@@ -26,23 +26,26 @@ class MainActivity :
     private val TAG: String = javaClass.canonicalName
 
     private var fragment: Fragment? = null
+    private var todosFragment: TodoListFragment? = null
+    private var allTodosFragment: AllTodosListFragment? = null
+    private var donesTodosFragment: DonesTodosListFragment? = null
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                switchFragment(TodoListFragment.newInstance(1))
+                switchFragment(Screens.TODOS)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                switchFragment(DonesTodosListFragment.newInstance(1))
+                switchFragment(Screens.DONES)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                switchFragment(AllTodosListFragment.newInstance(1))
+                switchFragment(Screens.ALL)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                switchFragment(ProfileViewFragment.newInstance())
+                switchFragment(Screens.PROFILE)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -54,13 +57,44 @@ class MainActivity :
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        switchFragment(TodoListFragment.newInstance(1))
+        switchFragment(Screens.TODOS)
     }
 
-    private fun switchFragment(fragment: Fragment) {
-        this.fragment = fragment
+    private fun switchFragment(screen: Screens) {
+
+        when(screen) {
+            Screens.TODOS -> {
+                if (this.todosFragment == null) {
+                    todosFragment = TodoListFragment.newInstance(1)
+                }
+
+                this.fragment = todosFragment
+            }
+            Screens.ALL -> {
+                if (this.allTodosFragment == null) {
+                    allTodosFragment = AllTodosListFragment.newInstance(1)
+                }
+
+                this.fragment = allTodosFragment
+            }
+            Screens.DONES -> {
+                if (this.donesTodosFragment == null) {
+                    donesTodosFragment = DonesTodosListFragment.newInstance(1)
+                }
+
+                this.fragment = donesTodosFragment
+            }
+            Screens.PROFILE -> {
+                if (this.todosFragment == null) {
+                    todosFragment = TodoListFragment.newInstance(1)
+                }
+
+                this.fragment = todosFragment
+            }
+        }
+
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.content, fragment)
+        fragmentTransaction.replace(R.id.content, this.fragment)
         fragmentTransaction.commit()
     }
 
@@ -71,5 +105,9 @@ class MainActivity :
 
     override fun onFragmentInteraction(uri: Uri) {
 
+    }
+
+    enum class Screens {
+        TODOS, DONES, ALL, PROFILE
     }
 }
