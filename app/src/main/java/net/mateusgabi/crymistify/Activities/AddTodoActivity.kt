@@ -44,7 +44,7 @@ class AddTodoActivity : AppCompatActivity() {
         val description = input_description.text.toString()
         val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").format(todo_date)
 
-        val todo = Todo(title, description, false, "", date)
+        val todo = Todo(title, description, false, SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").format(Date()), date, "")
 
         API().addTodo(todo).subscribe({
             if (it) {

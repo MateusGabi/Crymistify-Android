@@ -170,5 +170,23 @@ class API {
         }
     }
 
+    fun markAsDone(todo: Todo): Single<Boolean> {
+        return create {
+            responseEmitter ->
+
+
+            val user = FirebaseAuth.getInstance().currentUser?.uid
+            val uid = todo._key
+
+            todo.done = true
+
+            FirebaseDatabase.getInstance()
+                    .getReference("users/$user/todos/$uid")
+                    .setValue(todo)
+                    .addOnCompleteListener {
+                        responseEmitter.onSuccess(it.isSuccessful)
+                    }
+        }
+    }
 
 }

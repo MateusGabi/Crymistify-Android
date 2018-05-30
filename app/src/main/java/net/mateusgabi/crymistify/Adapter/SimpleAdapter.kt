@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.simple_list_item.view.*
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.R
+import net.mateusgabi.crymistify.Services.API
 
 class SimpleAdapter(
         context: Context,
@@ -60,7 +61,13 @@ class SimpleAdapter(
                 viewHolder.mView.description.text = todo.description
 
                 viewHolder.mView.btn_done.setOnClickListener {
-                    Toast.makeText(context, "Our best jest marked this shit as done", Toast.LENGTH_SHORT).show()
+                    API().markAsDone(todo).subscribe({
+                        if (it) {
+                            Toast.makeText(context, "Our best jest marked this shit as done", Toast.LENGTH_SHORT).show()
+                        }
+                    }, {
+
+                    })
                 }
 
                 viewHolder.mView.btn_delete.setOnClickListener {
