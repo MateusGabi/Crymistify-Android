@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.main.simple_list_item.view.*
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.R
 
@@ -48,10 +50,7 @@ class SimpleAdapter(
                 layoutInflater.inflate(R.layout.simple_list_item, parent, false)
             }
 
-            viewHolder = ViewHolder(
-                    view.findViewById(R.id.text_view),
-                    view.findViewById(R.id.description)
-            )
+            viewHolder = ViewHolder(view)
             view.tag = viewHolder
         } else {
             viewHolder = view.tag as ViewHolder
@@ -60,20 +59,13 @@ class SimpleAdapter(
         val context = parent.context
         when (position) {
             0 -> {
-                viewHolder.textView.text = todo.title
-                viewHolder.description.text = todo.description
-
-            }
-            1 -> {
-                viewHolder.textView.text = context.getString(R.string.google_maps_title)
-            }
-            else -> {
-                viewHolder.textView.text = context.getString(R.string.google_messenger_title)
+                viewHolder.mView.title.text = todo.title
+                viewHolder.mView.description.text = todo.description
             }
         }
 
         return view!!
     }
 
-    data class ViewHolder(val textView: TextView, val description: TextView)
+    data class ViewHolder(val mView: View)
 }
