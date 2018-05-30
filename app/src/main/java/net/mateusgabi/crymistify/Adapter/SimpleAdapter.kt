@@ -7,10 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.simple_list_item.view.*
@@ -61,6 +58,14 @@ class SimpleAdapter(
             0 -> {
                 viewHolder.mView.title.text = todo.title
                 viewHolder.mView.description.text = todo.description
+
+                viewHolder.mView.btn_done.setOnClickListener {
+                    Toast.makeText(context, "Our best jest marked this shit as done", Toast.LENGTH_SHORT).show()
+                }
+
+                viewHolder.mView.btn_delete.setOnClickListener {
+                    Toast.makeText(context, "Holly chaves, this action is not enable yet", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
