@@ -5,12 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
+import android.view.View
+import android.widget.Adapter
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.gigamole.navigationtabstrip.NavigationTabStrip
+import com.orhanobut.dialogplus.DialogPlus
+import com.orhanobut.dialogplus.OnItemClickListener
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import net.mateusgabi.crymistify.R
 
 import kotlinx.android.synthetic.main.activity_main2.*
+import net.mateusgabi.crymistify.Adapter.SimpleAdapter
 import net.mateusgabi.crymistify.Fragment.TodoListViewAdapter
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.Services.API
@@ -106,7 +113,19 @@ class MainActivity : AppCompatActivity(), TodoListViewAdapter.OnListFragmentInte
     }
 
     override fun onListFragmentInteraction(item: Todo) {
-        Toast.makeText(this, "Pode clicar a vontade, maladrão", Toast.LENGTH_LONG).show()
+
+        val dialogPlus = DialogPlus.newDialog(this).apply {
+            adapter = SimpleAdapter(this@MainActivity, item)
+            isExpanded = true
+        }
+
+
+        dialogPlus.create().show()
+
+    }
+
+    private fun toast(string: String) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
     }
 
 
