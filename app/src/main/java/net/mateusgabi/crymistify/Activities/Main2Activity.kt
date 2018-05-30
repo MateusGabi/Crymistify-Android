@@ -15,7 +15,7 @@ import net.mateusgabi.crymistify.Fragment.TodoListViewAdapter
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.Services.API
 
-class Main2Activity : AppCompatActivity() {
+class Main2Activity : AppCompatActivity(), TodoListViewAdapter.OnListFragmentInteractionListener {
 
     private var allTodos = mutableListOf<Todo>()
     private var actualScreen = Screens.TODOS
@@ -94,17 +94,19 @@ class Main2Activity : AppCompatActivity() {
         }
 
         list.layoutManager = LinearLayoutManager(this@Main2Activity)
-        list.adapter = TodoListViewAdapter(todos.toMutableList(), null)
+        list.adapter = TodoListViewAdapter(todos.toMutableList(), this)
 
         list.adapter.notifyDataSetChanged()
         pull_to_refresh.setRefreshing(false)
 
     }
-
-
-
+    
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
+    }
+
+    override fun onListFragmentInteraction(item: Todo) {
+        Toast.makeText(this, "Pode clicar a vontade, maladrão", Toast.LENGTH_LONG).show()
     }
 
 

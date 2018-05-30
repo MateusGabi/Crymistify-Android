@@ -7,9 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import net.mateusgabi.crymistify.R
 
-
-import net.mateusgabi.crymistify.Fragment.TodoListFragment.OnListFragmentInteractionListener
-
 import kotlinx.android.synthetic.main.fragment_todo.view.*
 import net.mateusgabi.crymistify.Model.Todo
 
@@ -60,5 +57,9 @@ class TodoListViewAdapter(
         override fun toString(): String {
             return super.toString() + " '" + mContentView.text + "'"
         }
+    }
+
+    interface OnListFragmentInteractionListener {
+        fun onListFragmentInteraction(item: Todo)
     }
 }
