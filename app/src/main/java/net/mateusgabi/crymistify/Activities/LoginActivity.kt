@@ -119,7 +119,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         hideProgressDialog()
         if (user != null) {
 
-            val intent: Intent = Intent(this, Main2Activity::class.java)
+            val intent: Intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
 

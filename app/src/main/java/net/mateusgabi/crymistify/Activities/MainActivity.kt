@@ -15,7 +15,7 @@ import net.mateusgabi.crymistify.Fragment.TodoListViewAdapter
 import net.mateusgabi.crymistify.Model.Todo
 import net.mateusgabi.crymistify.Services.API
 
-class Main2Activity : AppCompatActivity(), TodoListViewAdapter.OnListFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), TodoListViewAdapter.OnListFragmentInteractionListener {
 
     private var allTodos = mutableListOf<Todo>()
     private var actualScreen = Screens.TODOS
@@ -79,7 +79,7 @@ class Main2Activity : AppCompatActivity(), TodoListViewAdapter.OnListFragmentInt
             setDatasFromScreen()
 
         }, {
-            Toast.makeText(this@Main2Activity, it.message.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(this@MainActivity, it.message.toString(), Toast.LENGTH_LONG).show()
         })
     }
 
@@ -93,14 +93,14 @@ class Main2Activity : AppCompatActivity(), TodoListViewAdapter.OnListFragmentInt
             else -> allTodos
         }
 
-        list.layoutManager = LinearLayoutManager(this@Main2Activity)
+        list.layoutManager = LinearLayoutManager(this@MainActivity)
         list.adapter = TodoListViewAdapter(todos.toMutableList(), this)
 
         list.adapter.notifyDataSetChanged()
         pull_to_refresh.setRefreshing(false)
 
     }
-    
+
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
     }

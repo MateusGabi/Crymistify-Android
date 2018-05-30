@@ -28,10 +28,6 @@
             android:name=".Activities.AddTodoActivity"
             android:label="@string/title_activity_add_todo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
