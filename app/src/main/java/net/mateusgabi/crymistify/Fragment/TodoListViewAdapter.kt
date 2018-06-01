@@ -64,7 +64,7 @@ class TodoListViewAdapter(
                 }
 
                 if (dateIsLessThanXDays(date, 3)) {
-                    color = R.color.material_deep_orange_500
+                    color = R.color.material_orange_500
                 }
 
                 if (dateIsLessThanXDays(date, 1)) {

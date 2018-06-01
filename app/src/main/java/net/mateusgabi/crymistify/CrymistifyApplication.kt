@@ -9,15 +9,15 @@ import io.github.inflationx.viewpump.ViewPump
 
 class CrymistifyApplication : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
+//    override fun onCreate() {
+//        super.onCreate()
 
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                                .setDefaultFontPath("fonts/Nunito-Regular.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build())
-    }
+//        ViewPump.init(ViewPump.builder()
+//                .addInterceptor(CalligraphyInterceptor(
+//                        CalligraphyConfig.Builder()
+//                                .setDefaultFontPath("fonts/Nunito-Regular.ttf")
+//                                .setFontAttrId(R.attr.fontPath)
+//                                .build()))
+//                .build())
+//    }
 }

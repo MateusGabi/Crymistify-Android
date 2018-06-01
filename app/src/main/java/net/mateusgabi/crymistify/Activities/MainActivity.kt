@@ -117,6 +117,7 @@ class MainActivity : AppCompatActivity(), TodoListViewAdapter.OnListFragmentInte
         val dialogPlus = DialogPlus.newDialog(this).apply {
             adapter = SimpleAdapter(this@MainActivity, item)
             isExpanded = true
+            setGravity(Gravity.BOTTOM)
         }
 
 
