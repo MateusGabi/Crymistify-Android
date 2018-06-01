@@ -6,6 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * @author Saúl Piña <sauljabin@gmail.com>
+ * @link https://gist.github.com/sauljabin/f620f0029c7dcea06c30
+ */
 public class DateUtils {
 
     public static final String FORMAT_DATE = "dd-MM-yyyy";
