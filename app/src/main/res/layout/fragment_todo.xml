@@ -12,6 +12,13 @@
         android:elevation="@dimen/cardview_default_elevation"
         >
 
+        <View
+            android:id="@+id/border_hue"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/material_light_white"
+            />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,6 +41,13 @@
                 android:layout_height="wrap_content"
                 android:text="Description"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/date_expire_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         </LinearLayout>
 

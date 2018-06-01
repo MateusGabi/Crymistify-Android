@@ -9,6 +9,9 @@ import net.mateusgabi.crymistify.R
 
 import kotlinx.android.synthetic.main.fragment_todo.view.*
 import net.mateusgabi.crymistify.Model.Todo
+import net.mateusgabi.crymistify.Utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -42,10 +45,45 @@ class TodoListViewAdapter(
         holder.mIdView.text = item.title
         holder.mContentView.text = item.description
 
+
         with(holder.mView) {
             tag = item
             setOnClickListener(mOnClickListener)
+
+            if (!item.expire_in.isNullOrBlank() && item.expire_in.length == 25) {
+                val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse(item.expire_in)
+                val now = Date()
+
+                date_expire_in.text = DateUtils.format(date, "MM/dd h:mm a")
+
+                var color = R.color.material_light_white
+
+
+                if (dateIsLessThanXDays(date, 7)) {
+                    color = R.color.material_yellow_500
+                }
+
+                if (dateIsLessThanXDays(date, 3)) {
+                    color = R.color.material_deep_orange_500
+                }
+
+                if (dateIsLessThanXDays(date, 1)) {
+                    color = R.color.material_red_500
+                }
+
+                if (dateIsLessThanXDays(date,0)) {
+                    color = R.color.material_light_black
+                }
+
+
+                border_hue.setBackgroundColor(context.getColor(color))
+            }
+
         }
+    }
+
+    private fun dateIsLessThanXDays(date: Date, days: Int): Boolean {
+        return DateUtils.add(Date(), DateUtils.DAY, days).after(date)
     }
 
     override fun getItemCount(): Int = mValues.size
