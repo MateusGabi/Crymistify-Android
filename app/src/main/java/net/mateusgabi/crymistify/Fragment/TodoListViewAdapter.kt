@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.github.mateusgabi.date.DateHelper
 import net.mateusgabi.crymistify.R
 
 import kotlinx.android.synthetic.main.fragment_todo.view.*
 import net.mateusgabi.crymistify.Model.Todo
-import net.mateusgabi.crymistify.Utils.DateUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,7 +54,7 @@ class TodoListViewAdapter(
                 val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").parse(item.expire_in)
                 val now = Date()
 
-                date_expire_in.text = DateUtils.format(date, "MM/dd h:mm a")
+                date_expire_in.text = DateHelper.format(date, "MM/dd h:mm a")
 
                 var color = R.color.material_light_white
 
@@ -83,7 +83,7 @@ class TodoListViewAdapter(
     }
 
     private fun dateIsLessThanXDays(date: Date, days: Int): Boolean {
-        return DateUtils.add(Date(), DateUtils.DAY, days).after(date)
+        return DateHelper.add(Date(), DateHelper.DAY, days).after(date)
     }
 
     override fun getItemCount(): Int = mValues.size
